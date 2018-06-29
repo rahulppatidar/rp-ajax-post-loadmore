@@ -1,12 +1,15 @@
 <?php
 /*
 * Plugin Name: Rp Ajax Post Loadmore
-* Author: RP
-* Description: A plugin that give shortcode for ajax post loadmore feature on scroll with <strong>[rpAjaxPostLoadmore post_container='#main' single_post_container='.post']</strong> shortcode. Just put this line bellow post loop. Replace '#main' with all posts container class or id and '.post' with single post container Class. <br><strong><?php echo do_shortcode("[rpAjaxPostLoadmore post_container='#main' single_post_container='.post']");?></strong>
+* Plugin URI: https://github.com/rahulppatidar/rp-ajax-post-loadmore
+* Author: rahulppatidar
+* Author URI: https://github.com/rahulppatidar
+* Description: A plugin that give shortcode for ajax post loadmore feature on scroll with <strong>[rpAjaxPostLoadmore posts_container='#main' single_post_container='.post']</strong> shortcode. Just put this line bellow post loop. Replace '#main' with all posts container class or id and '.post' with single post container Class. <br><strong><?php echo do_shortcode("[rpAjaxPostLoadmore posts_container='#main' single_post_container='.post']");?></strong>
 * Version: 1.0
+* License: GPL3
 */
 
-
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 function rpAjaxPostLoadmoreTemplate($arg){ 
 ob_start();
@@ -46,7 +49,7 @@ echo $image_path;
 	jQuery(document).ready(function($){
                  
 var currentPage = 2;
-var containerItemSelector =<?php echo '"'.$arg['post_container'].'"'; ?>;
+var containerItemSelector =<?php echo '"'.$arg['posts_container'].'"'; ?>;
 var postItemSelector = <?php echo '"'.$arg['single_post_container'].'"'; ?>;
 var hasMore=true;
 
@@ -112,7 +115,7 @@ function rpAjaxPostLoadmore( $atts ) {
   $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 
     $arg = shortcode_atts( array(
-        'post_container' => '#main',
+        'posts_container' => '#main',
         'single_post_container'=> '.post'
     ), $atts );
     rpAjaxPostLoadmoreTemplate($arg);
